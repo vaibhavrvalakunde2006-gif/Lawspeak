@@ -171,8 +171,8 @@ function analysePageLocally(text, uiElements) {
   formData.append('text', text);
   formData.append('lang', 'en-IN'); // Fetch English for extension
 
-  // Using the public Ngrok URL so anyone can use the extension
-  fetch('https://excaudate-eleonor-repudiatory.ngrok-free.dev/analyse', {
+  // Using the live Render URL so anyone can use the extension
+  fetch('https://lawspeak.onrender.com/analyse', {
     method: 'POST',
     body: formData
   })
