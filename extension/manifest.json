@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "LawSpeak — Auto Contract Analyser",
+  "version": "1.0",
+  "description": "Automatically detects Terms & Conditions and spots dangerous legal clauses in seconds.",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": ["styles.css"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "host_permissions": [
+    "https://excaudate-eleonor-repudiatory.ngrok-free.dev/*"
+  ]
+}

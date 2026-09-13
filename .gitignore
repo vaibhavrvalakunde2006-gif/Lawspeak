@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+backend/ngrok.exe
+backend/.ngrok.exe.old
+ngrok.log
+backend/url_debug.log
+backend/serviceAccountKey.json
+backend/lawspeak.db
+

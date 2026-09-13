@@ -1,0 +1,232 @@
+/* LawSpeak Extension Styles */
+
+#lawspeak-ext-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2147483647; /* Max z-index to ensure it sits on top of everything */
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none; /* Let clicks pass through container */
+}
+
+/* Badge (The main pill) */
+#lawspeak-ext-badge {
+  background: #111827;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 9999px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  pointer-events: auto; /* Re-enable pointer events for the badge */
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+
+#lawspeak-ext-badge:hover {
+  transform: translateY(-2px);
+  border-color: #c9a84c;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6), 0 10px 10px rgba(0, 0, 0, 0.4);
+}
+
+.lawspeak-ext-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: #c9a84c;
+  border-radius: 6px;
+}
+
+.lawspeak-ext-logo svg {
+  width: 14px;
+  height: 14px;
+  fill: #0c1220;
+}
+
+.lawspeak-ext-text {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.lawspeak-ext-score {
+  font-weight: 800;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 16px;
+}
+
+.lawspeak-ext-status-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lawspeak-ext-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #c9a84c;
+  border-radius: 50%;
+  animation: lawspeak-spin 0.8s linear infinite;
+}
+
+@keyframes lawspeak-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Colors based on risk */
+.lawspeak-ext-red { color: #ef4444; }
+.lawspeak-ext-amber { color: #f59e0b; }
+.lawspeak-ext-green { color: #22c55e; }
+
+/* Expanded Panel */
+#lawspeak-ext-panel {
+  width: 380px;
+  background: #111827;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: none;
+}
+
+#lawspeak-ext-panel.lawspeak-ext-open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  display: block;
+}
+
+.lawspeak-ext-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1e293b;
+}
+
+.lawspeak-ext-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #f1f5f9;
+}
+
+.lawspeak-ext-verdict {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.lawspeak-ext-body {
+  padding: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Custom Scrollbar for Panel */
+.lawspeak-ext-body::-webkit-scrollbar {
+  width: 6px;
+}
+.lawspeak-ext-body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+.lawspeak-ext-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.lawspeak-ext-summary {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #94a3b8;
+  margin-bottom: 16px;
+}
+
+.lawspeak-ext-clauses-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #c9a84c;
+  margin-bottom: 12px;
+}
+
+.lawspeak-ext-clause {
+  background: #1e293b;
+  border-left: 3px solid;
+  border-radius: 0 6px 6px 0;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.lawspeak-ext-clause.RED { border-color: #ef4444; background: rgba(239, 68, 68, 0.05); }
+.lawspeak-ext-clause.AMBER { border-color: #f59e0b; background: rgba(245, 158, 11, 0.05); }
+
+.lawspeak-ext-clause-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.lawspeak-ext-clause-cat {
+  font-size: 10px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.lawspeak-ext-clause-plain {
+  font-size: 13px;
+  font-weight: 500;
+  color: #f1f5f9;
+  margin-bottom: 4px;
+}
+
+.lawspeak-ext-clause-danger {
+  font-size: 12px;
+  color: rgba(239, 68, 68, 0.85);
+  line-height: 1.4;
+}
+
+.lawspeak-ext-clause.AMBER .lawspeak-ext-clause-danger {
+  color: rgba(245, 158, 11, 0.85);
+}
+
+.lawspeak-ext-footer {
+  padding: 12px 20px;
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+  text-align: center;
+  font-size: 11px;
+  color: #64748b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lawspeak-ext-link {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.lawspeak-ext-link:hover {
+  text-decoration: underline;
+}
