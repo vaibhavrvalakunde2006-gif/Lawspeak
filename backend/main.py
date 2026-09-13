@@ -34,7 +34,7 @@ def ask_groq(prompt):
             }
         ]
     }
-    response = requests.post(url, headers=headers, json=data, timeout=60)
+    response = requests.post(url, headers=headers, json=data, timeout=180)
     result = response.json()
     if "choices" not in result:
         raise Exception("API error: " + str(result))
