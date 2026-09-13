@@ -13,6 +13,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from dotenv import load_dotenv
+load_dotenv()
+
 import os
 API_KEY = os.environ.get("GEMINI_API_KEY", "YOUR_API_KEY_HERE")
 
