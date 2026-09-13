@@ -19,6 +19,7 @@ load_dotenv()
 import os
 API_KEY = os.environ.get("GEMINI_API_KEY", "YOUR_API_KEY_HERE")
 
+import time
 def ask_groq(prompt):
     url = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
     headers = {
@@ -34,12 +35,28 @@ def ask_groq(prompt):
             }
         ]
     }
-    response = requests.post(url, headers=headers, json=data, timeout=180)
-    result = response.json()
-    if "choices" not in result:
-        raise Exception("API error: " + str(result))
-    answer = result["choices"][0]["message"]["content"]
-    return answer
+    
+    for attempt in range(3):
+        response = requests.post(url, headers=headers, json=data, timeout=180)
+        try:
+            result = response.json()
+        except:
+            if attempt < 2:
+                time.sleep(2)
+                continue
+            raise Exception("API returned non-JSON response: " + response.text)
+            
+        if "choices" in result:
+            return result["choices"][0]["message"]["content"]
+            
+        # If it's a 503 or high demand error, wait and try again
+        error_str = str(result).lower()
+        if "503" in error_str or "high demand" in error_str:
+            if attempt < 2:
+                time.sleep(2)
+                continue
+                
+    raise Exception("API error: " + str(result))
 
 
 def run_analysis(text):
